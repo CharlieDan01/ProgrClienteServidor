@@ -1,0 +1,64 @@
+Create table Sucursal(
+idCompania serial primary key,
+nombre varchar(200)NOT NULL,
+direccion varchar(200)NOT NULL,
+telefono varchar(200)NOT NULL,
+estatus integer DEFAULT 1
+);
+
+Create table Empleado(
+idEmpleado serial primary key,
+nombre varchar(200)NOT NULL,
+apellidos varchar(200)NOT NULL,
+estatus integer DEFAULT 1,
+idCompania integer NOT NULL,
+idPuesto integer not null,
+idVentas integer not null
+);
+
+create table PuestoEmpleado(
+idPuesto serial primary key,
+nombre varchar(200)NOT NULL,
+estatus integer DEFAULT 1
+);
+
+create table Cliente(
+idCliente serial primary key,
+nombre varchar(200)NOT NULL,
+apellidos varchar(200)NOT NULL,
+telefono varchar(20)NOT NULL,
+calle varchar(30)NOT NULL,
+numeroCasa varchar(10)NOT NULL,
+colonia varchar(200)NOT NULL,
+estatus BIT DEFAULT 1,
+CONSTRAINT PK_Cliente PRIMARY KEY(idCliente)
+);
+
+create table Ventas(
+idVentas serial primary key,
+fechaFactura datetime,
+cantidad varchar(200),
+estatus integer DEFAULT 1,
+idEmpleado integer not null,
+idFormaDePago integer not null,
+idCliente integer not null,
+idProductoVenta integer not null
+);
+
+create table FormaDePago(
+idFormaDePago serial primary key,
+nombrePago varchar(100),
+estatus BIT DEFAULT 1,
+CONSTRAINT PK_Formadepago PRIMARY KEY(idFormaDePago)
+);
+
+ create table Producto (
+ idProducto serial primary key,
+ modelo varchar(100)NOT NULL,
+ precioVenta varchar(100)NOT NULL,
+ precioCompra varchar(100)NOT NULL,
+ color varchar(10)NOT NULL,
+ cantidad varchar(100)NOT NULL,
+ estatus BIT DEFAULT 1,
+CONSTRAINT PK_Producto PRIMARY KEY(idProducto)
+ );
